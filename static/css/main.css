@@ -1,0 +1,149 @@
+*{
+    font-family: 'Comic Sans MS', cursive;
+    margin:0;
+    padding:0;
+}
+html,body {
+    height:100%;
+}
+a:visited,a{
+    text-decoration: none;
+    color: black;
+}
+
+.main{
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    row-gap: 20px;
+}
+.header,.footer{
+    width: 100%;
+    color:white;
+    text-align: center;
+    font-size: 1.5vw;  
+    padding:20px 0; 
+}
+.header,.login-btn{
+    background-color: rgb(0, 162, 232);
+}
+.footer{
+    background-color: rgb(195, 195, 195);
+}
+.login-btn,a.login-btn{
+    align-self: center;
+    color:white;
+    padding:15px;
+    border: none;
+    font-size: 1.5vw;
+    border-radius: 10px;
+}
+.unverified{
+    align-self: center;
+    color:white;
+    background-color: rgb(233, 77, 77);
+    padding:15px;
+    border: none;
+    font-size: 1.5vw;
+    border-radius: 10px;
+}
+
+form{
+    display:flex;
+    flex-direction: column;
+    row-gap: 15px;
+    align-self: center;
+    padding: 20px;
+    border: 1px solid rgb(129, 123, 123);
+    border-radius: 18px;
+    
+}
+
+.flex-parent{
+  display:flex;
+  flex-direction: row;
+  width:100%;
+  justify-content: space-around;
+  flex-wrap: wrap;
+ 
+}
+.flex-el{
+  margin:10px;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  row-gap:10px;
+  border:1px grey solid;
+  border-radius:12px;
+}
+.green-btn,.red-btn{
+  padding:12px;
+  font-size: 18px;
+  color:white;
+  border:none;
+  border-radius:12px;
+  margin:8px;
+}
+.green-btn{
+  background-color:green;
+}
+.red-btn{
+  background-color:red;
+}
+.section_title{
+    align-self: start;
+    margin-left: 25px;
+}
+.add_profile{
+    align-self: end;
+    padding:5px;
+    border-radius: 10px;
+    color: white;
+    background-color:rgb(0, 162, 232);
+}
+.page{
+    position:fixed;
+    top:0px;
+    left:0px;
+    width:100%; 
+    height: 100%; 
+    z-index: 2; 
+    background-color: rgba(0, 0, 0, 0.479); 
+    display:flex; 
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.main_form{
+background-color: white;
+padding: 10px;
+width:35%;
+display:flex;
+flex-direction: column;
+box-shadow: 3px 3px 5px lightblue;
+border-radius: 4px;
+
+gap:15px;
+}
+   .selected-tags {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+   .tag {
+      background: #007bff;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      text-align: center;
+    }
+
+    .tag .remove {
+      margin-left: 8px;
+      cursor: pointer;
+      font-weight: bold;
+    }

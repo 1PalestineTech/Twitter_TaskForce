@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Twitter TaskFoce</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/
+all.min.css">
+ <link rel="stylesheet" href="static/css/main.css">
+ <link rel="stylesheet" href="static/css/app.css">
+<script  src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+ </head>
+
+<body>
+    <div class="main">
+        <div class = "header"> 
+            <h1>Twitter TaskFoce</h1>
+        </div>
+        {% if not is_logged %}
+        <a href="/login" class="login-btn">Login</a>
+        {% elif  status == 'unverified' %}
+        <div class ="unverified"> Wait to get Verified</div>
+        {% elif  status == 'banned' %}
+        <div class ="unverified"> You are Banned</div>
+        {% elif  status == 'rejected' %}
+        <div class ="unverified"> You are Rejected</div>
+        {% else %}
+        <div class="app">
+            <div class="app_header">
+                <span class="app_btn" onclick="loadTweet()">Tweet</span>
+                <span class="app_btn" onclick="loadRetweet()">Retweet</span>
+                <span class="app_btn" onclick="loadComments()">Comment</span>
+                <span class="app_btn" onclick="loadLikes()">Like</span>
+                <span class="app_btn" onclick="loadFollow()">Follow</span>
+                <span class="app_btn" onclick="loadMute()">Mute</span>
+            </div>
+            <div class="app_body">
+                <textarea  id="tweet"></textarea>
+                <div>
+                <button class="green-btn" onclick="tweet()">Tweet</button>
+                </div>
+            </div>
+        </div>
+        <script src="static/js/app.js"></script>
+        
+        {% endif %}
+        <div class="footer">Copy Right</div>
+    </div>
+    
+</body>
+</html>

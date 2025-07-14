@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Twitter TaskFoce</title>
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/
+all.min.css">
+ <link rel="stylesheet" href="static/css/main.css">
+
+ </head>
+
+<body>
+    <div class="main">
+        <div class = "header"> 
+            <h1>Twitter TaskFoce</h1>
+        </div>
+        <button class="add_profile" onclick="add_profile()">Add Profile</button>
+
+        <div class="section_title"><h2>Verify Users</h2></div>
+        <div class="flex-parent verify-user">
+          {% for user in unverified %}
+            <div class="flex-el verify_{{ user[0]}}">
+                <div>Verify User</div>
+                <div>Username: {{ user[1] }}</div>
+                <div>Profile: <a href="https://www.x.com/{{ user[1] }}">{{ user[1] }}</a></div>
+                <div class="buttons">
+                <button class="green-btn" onclick="manage_user('verify','{{ user[0]}}')">Verify</button>
+                <button class="red-btn" onclick="manage_user('reject','{{ user[0]}}')">Reject</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="section_title"><h2>Manage Profiles</h2></div>
+        <div class="flex-parent verify-user">
+             {% for user in profiles %}
+            <div class="flex-el profile_{{user['id']}}">
+                <div>Profiles</div>
+                <div>Username: {{ user['username'] }}</div>
+                <div>Profile: <a href="https://www.x.com/{{ user['username'] }}">{{ user['username'] }}</a></div>
+                <div class="selected-tags">Actions: 
+                    {% for action in user["Actions"] %}
+                    <span class="tag"> {{action}}</span>
+                    {% endfor %}
+                </div>
+                <div class="buttons">
+                <button class="green-btn" onclick="manage_profile('edit',id='{{ user["id"]}}',username='{{ user["username"]}}')">Edit</button>
+                <button class="red-btn" onclick="manage_profile('remove',id = '{{ user["id"]}}')">Remove</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="section_title"><h2>Verify Posts</h2></div>
+         <div class="flex-parent verify-user">
+             {% for post in posts %}
+             {% if post["status"]  == "unverified" %}
+            <div class="flex-el post_{{post['post_id']}}">
+                <div>Post</div>
+                <div>Made By: {{ post["username"] }}</div>
+                <div>Status: {{ post["status"] }}</div>
+                <div class="selected-tags">Actions: 
+                    {% for action in post["actions"] %}
+                    <span class="tag"> {{action}}</span>
+                    {% endfor %}
+                </div>
+                <div><blockquote class="twitter-tweet">
+  <a href="https://twitter.com/{{post['username'] }}/status/{{post['post_id']}}"></a>
+</blockquote></div>
+                <div class="buttons">
+                <button class="green-btn" onclick="manage_post('verify','{{post["post_id"]}}')">Accept</button>
+                <button class="red-btn" onclick="manage_post('reject','{{post["post_id"]}}')">Reject</button>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+   
+        <div class="section_title"><h2>Manage Agents</h2></div>
+        <div class="flex-parent verify-user">
+             {% for user in verified %}
+            <div class="flex-el">
+                <div>Agents</div>
+                <div>Username: {{ user[1] }}</div>
+                <div>Profile: <a href="https://www.x.com/{{ user[1] }}">{{ user[1] }}</a></div>
+                <div class="status_{{user[0]}}">Status: {{ user[2] }}</div>
+                <div class="buttons btn_{{user[0]}}">
+                    {% if user[2] == "verified" %}
+                        <button class="red-btn" onclick="manage_user('ban','{{ user[0]}}')">Ban</button>
+                    {% elif user[2] == "rejected" %}
+                        <button class="green-btn" onclick="manage_user('rejected','{{ user[0]}}')">Accept</button>
+                        <button class="red-btn" onclick="manage_user('ban','{{ user[0]}}')">Ban</button>
+                    {% elif user[2] == "banned" %}
+                        <button class="green-btn" onclick="manage_user('unban','{{ user[0]}}')">Unban</button>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="section_title"><h2>Manage Posts</h2></div>
+         <div class="flex-parent verify-user">
+             {% for post in posts %}
+             {% if post["status"]  != "unverified" %}
+            <div class="flex-el">
+                <div>Post</div>
+                <div>Made By: {{ post["username"] }}</div>
+                <div class="postStatus_{{post['post_id']}}">Status: {{ post["status"] }}</div>
+                <div class="selected-tags">Actions: 
+                    {% for action in post["actions"] %}
+                    <span class="tag"> {{action}}</span>
+                    {% endfor %}
+                </div>
+                <div>
+                    <blockquote class="twitter-tweet">
+                        <a href="https://twitter.com/{{post['username'] }}/status/{{post['post_id']}}"></a>
+                    </blockquote>
+                </div>
+                <div class="buttons .btnPost_{{post['post_id']}}">
+                    {% if post["status"]  == "verified" %}
+                    <button class="red-btn" onclick="manage_post('remove','{{post["post_id"]}}')">Remove</button>
+                
+                {% elif post["status"]  == "rejected" %}
+                    <button class="green-btn" onclick="manage_post('accept','{{post["post_id"]}}')">Accept</button>
+                {% endif %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        
+   
+        <div class="footer">Copy Right</div>
+    </div>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <script src="static/js/panel.js"></script>
+</body>
+</html>
